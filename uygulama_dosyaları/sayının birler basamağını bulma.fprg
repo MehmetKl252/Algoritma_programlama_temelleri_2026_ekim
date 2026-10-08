@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="say&#305;n&#305;n birler basama&#287;&#305;n&#305; bulma"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-06-10 04:06:34 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTEwOzAyOjQ3OjIwIMOWUzsyMzgz"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTEwOzA0OjA2OjM0IMOWUzs0OzI0OTY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="s" type="Integer" array="False" size=""/>
+            <input variable="s"/>
+            <assign variable="s" expression="s%10"/>
+            <output expression="&quot;birler basamas&#287;&#305;=&quot;&amp;s" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

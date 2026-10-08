@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="say&#305; kar&#351;&#305;la&#351;t&#305;rmalar&#305;2"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-06-03 03:34:31 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTAzOzAzOjEwOjQzIMOWUzsyMzgx"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTAzOzAzOjM0OjMxIMOWUzsxOzI0OTI="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="a, b, c" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <input variable="b"/>
+            <input variable="c"/>
+            <if expression="a&gt;b and a&gt;c">
+                <then>
+                    <output expression="&quot;ilk say&#305; b&#252;y&#252;k&quot;" newline="True"/>
+                </then>
+                <else>
+                    <if expression="b&gt;a and b&gt;c">
+                        <then>
+                            <output expression="&quot;ikinci say&#305; b&#252;y&#252;k&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;&#252;&#231;&#252;nc&#252; say&#305; b&#252;y&#252;k&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

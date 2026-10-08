@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="say&#305; kar&#351;&#305;la&#351;t&#305;rmalar&#305;"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-06-03 02:55:15 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTAzOzAyOjQ2OjI0IMOWUzsyMzg4"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTAzOzAyOjU1OjE1IMOWUzsxOzI0OTY="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="a, b" type="Integer" array="False" size=""/>
+            <input variable="a"/>
+            <input variable="b"/>
+            <if expression="a&gt;b">
+                <then>
+                    <output expression="a*b" newline="True"/>
+                </then>
+                <else>
+                    <output expression="a+b" newline="True"/>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

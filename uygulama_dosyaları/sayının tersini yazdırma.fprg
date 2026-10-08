@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="say&#305;n&#305;n birler basama&#287;&#305;n&#305; bulma"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-06-10 04:03:53 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTEwOzAyOjQ3OjIwIMOWUzsyMzgz"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTEwOzA0OjAzOjUzIMOWUzszOzI0OTM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="s, k, t" type="Integer" array="False" size=""/>
+            <input variable="s"/>
+            <assign variable="k" expression="0"/>
+            <assign variable="t" expression="0"/>
+            <while expression="s&gt;0">
+                <assign variable="k" expression="s%10"/>
+                <assign variable="t" expression="(t*10)+k"/>
+                <assign variable="s" expression="s/10"/>
+            </while>
+            <output expression="&quot;tersi=&quot;&amp;t" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>

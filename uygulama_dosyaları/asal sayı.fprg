@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="asal say&#305;"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-06 07:26:15 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTA2OzA2OjIxOjUzIMOWUzsyMzg1"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTA2OzA3OjI2OjE1IMOWUzsxOzI0OTc="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="s, i, a" type="Integer" array="False" size=""/>
+            <assign variable="i" expression="2"/>
+            <assign variable="a" expression="1"/>
+            <input variable="s"/>
+            <if expression="s==1 or s&lt;=0">
+                <then>
+                    <output expression="&quot;asal de&#287;il&quot;" newline="True"/>
+                </then>
+                <else>
+                    <while expression="i&lt;s">
+                        <if expression="s mod i == 0">
+                            <then>
+                                <assign variable="a" expression="0"/>
+                            </then>
+                            <else/>
+                        </if>
+                        <assign variable="i" expression="i+1"/>
+                    </while>
+                    <if expression="a==1">
+                        <then>
+                            <output expression="&quot;asal&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;asal de&#287;il&quot;" newline="True"/>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>

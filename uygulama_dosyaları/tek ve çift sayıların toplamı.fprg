@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="tek ve &#231;ift say&#305;lar&#305;n toplam&#305;"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-06-09 02:10:19 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTA5OzAxOjMwOjUxIMOWUzsyMzg2"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTA5OzAyOjEwOjE5IMOWUzsxOzI0OTc="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="s, i, ctopla, ttopla" type="Integer" array="False" size=""/>
+            <assign variable="ctopla" expression="0"/>
+            <assign variable="ttopla" expression="0"/>
+            <input variable="s"/>
+            <for variable="i" start="1" end="s" direction="inc" step="1">
+                <if expression="i%2=0">
+                    <then>
+                        <assign variable="ctopla" expression="ctopla+i"/>
+                    </then>
+                    <else>
+                        <assign variable="ttopla" expression="ttopla+i"/>
+                    </else>
+                </if>
+            </for>
+            <output expression="&quot;&#199;ift Say&#305;lar Toplam&#305;=&quot;&amp;ctopla" newline="True"/>
+            <output expression="&quot;Tek Say&#305;lar Toplam&#305;=&quot;&amp;ttopla" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
