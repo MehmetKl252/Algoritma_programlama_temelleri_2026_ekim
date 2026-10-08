@@ -1,0 +1,1 @@
+# Algoritma_programlama_temelleri_2026_ekim
