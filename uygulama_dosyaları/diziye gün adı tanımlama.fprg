@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="dizi tan&#305;mlama"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-12 08:51:44 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTEyOzA4OjI0OjM1IMOWUzsyMzg3"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTEyOzA4OjUxOjQ0IMOWUzs0OzI0OTg="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="gun" type="String" array="True" size="7"/>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="0" end="6" direction="inc" step="1">
+                <output expression="&quot;g&#252;n ad&#305;:&quot;" newline="True"/>
+                <input variable="gun[i]"/>
+            </for>
+            <output expression="&quot;ilem tamamland&#305;&quot;" newline="True"/>
+        </body>
+    </function>
+</flowgorithm>
