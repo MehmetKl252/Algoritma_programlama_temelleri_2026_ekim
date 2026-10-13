@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="kare &#231;iz"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-13 06:10:59 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTEzOzA2OjA3OjM4IMOWUzsyMzkw"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTEzOzA2OjEwOjU5IMOWUzsxOzI0OTU="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <for variable="i" start="1" end="4" direction="inc" step="1">
+                <forward expression="50" pen="down"/>
+                <turn expression="90" rotate="right"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="dosyaya veri yazmak"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-13 07:58:53 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTEzOzA3OjUzOjQ2IMOWUzsyMzkx"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTEzOzA3OjU4OjUzIMOWUzsxOzI1MDI="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="i" type="Integer" array="False" size=""/>
+            <open expression="&quot;file1.txt&quot;" mode="write"/>
+            <for variable="i" start="0" end="50" direction="inc" step="5">
+                <write expression="i"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>

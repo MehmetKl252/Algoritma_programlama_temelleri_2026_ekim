@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Notlar&#305; dizi ile girmek"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-10-13 06:32:44 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTEzOzA2OjIyOjE5IMOWUzsyMzg2"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTEwLTEzOzA2OjMyOjQ0IMOWUzsxOzI0OTM="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="notlar" type="Integer" array="True" size="3"/>
+            <declare name="sat&#305;r" type="String" array="False" size=""/>
+            <declare name="toplam, i" type="Integer" array="False" size=""/>
+            <assign variable="toplam" expression="0"/>
+            <assign variable="i" expression="0"/>
+            <while expression="i&lt;3">
+                <output expression="i+1&amp;&quot;.Ders notu=&quot;" newline="True"/>
+                <input variable="sat&#305;r"/>
+                <assign variable="norlar[i]" expression="ToInteger(sat&#305;r)"/>
+                <assign variable="toplam" expression="toplam+notlar[i]"/>
+                <assign variable="i" expression="i+1"/>
+            </while>
+        </body>
+    </function>
+</flowgorithm>
