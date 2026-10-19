@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karar Yapıları – Ünite 3 Quiz</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1d2433;--muted:#5b6475;--line:#d9dde5;--accent:#2457c5;--sel:#e8effc;--ok:#1b7a43;--bad:#b3261e}
+@media (prefers-color-scheme:dark){:root{--bg:#14171d;--card:#1d222b;--text:#e8eaf0;--muted:#9aa3b5;--line:#343b49;--accent:#7aa2f7;--sel:#25304a;--ok:#6fcf97;--bad:#f28b82}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 Georgia,"Times New Roman",serif;padding:24px 16px}
+main{max-width:680px;margin:0 auto}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 20px;font-family:system-ui,sans-serif;font-size:.95rem}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:20px}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px}
+.q{font-size:1.1rem;white-space:pre-line;margin:0 0 16px}
+.opt{display:flex;gap:12px;width:100%;text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:10px;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt:focus-visible,.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.opt.sel{background:var(--sel);border-color:var(--accent)}
+.opt b{font-family:system-ui,sans-serif;min-width:1.4em;color:var(--accent)}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-family:system-ui,sans-serif}
+.btn{font:inherit;font-family:system-ui,sans-serif;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 20px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.score{font-size:2.4rem;margin:0}
+.rev{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:16px 18px;margin-top:14px}
+.rev.ok{border-left:5px solid var(--ok)}
+.rev.no{border-left:5px solid var(--bad)}
+.rev p{margin:.3rem 0;white-space:pre-line}
+.tag{font-family:system-ui,sans-serif;font-size:.85rem}
+.ok .tag{color:var(--ok)}.no .tag{color:var(--bad)}
+.exp{color:var(--muted);font-size:.95rem}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<main>
+<h1>Karar Yapıları – Ünite 3</h1>
+<p class="sub">Algoritma ve Programlamaya Giriş · 10 soru · Sonuç en sonda gösterilir</p>
+<div class="bar" aria-hidden="true"><i id="bar"></i></div>
+
+<section id="quiz" class="card">
+  <p class="sub" id="count"></p>
+  <p class="q" id="qtext"></p>
+  <div id="opts"></div>
+  <div class="nav">
+    <button class="btn ghost" id="prev">Geri</button>
+    <button class="btn" id="next">İleri</button>
+  </div>
+</section>
+
+<section id="result" class="hidden">
+  <div class="card">
+    <p class="sub">Sonuç</p>
+    <p class="score" id="score"></p>
+    <p id="summary" class="sub"></p>
+    <button class="btn" id="restart">Yeniden başla</button>
+  </div>
+  <div id="review"></div>
+</section>
+</main>
+
+<script>
+// c = doğru şıkkın indeksi (0=a, 1=b ...)
+const Q=[
+{q:"Tek seçimli yapıda (if) koşul sağlanmazsa ne olur?",o:["Else bloğu çalışır","Program hata verir","Hiçbir işlem yapılmaz","Koşul tekrar kontrol edilir","Program baştan başlar"],c:2,e:"Tek seçimli yapıda koşul sağlanmazsa farklı bir eylem belirtilmez, bir şey yapılmaz."},
+{q:"Koşul doğruysa bir eylemi, yanlışsa başka bir eylemi gerçekleştiren yapı hangisidir?",o:["if","if…else","select…case","İç içe if","Hiçbiri"],c:1,e:"if…else çift seçimli yapıdır: koşula bağlı iki farklı işlem vardır."},
+{q:"VB dilinde bir if bloğunu sonlandırmak için hangi deyim kullanılır?",o:["Then","Else","End If","End Select","Next"],c:2,e:"Kullanılan her If deyimi için bir End If olması gerekir."},
+{q:"Çok seçimli yapıda sona her zaman bir Else eklenmesi önerilir. Bunun nedeni nedir?",o:["Programı hızlandırmak","Gözden kaçan bir durumda yanlış sonuç çıkmasını engellemek","Koşulların sayısını azaltmak","Değişken tanımlamak","Kodu kısaltmak"],c:1,e:"Else, hiçbir koşulun sağlanmadığı durumu yakalar; böylece göz ardı edilen durumlarda yanlış sonuç çıkması önlenir."},
+{q:"Algoritma:\nIF (x > 0) THEN y = x * x\nELSEIF (x < 0) THEN y = (4 * x) - 4\nELSE y = (2 * x) - 5\n\nx = -3 için y kaçtır?",o:["9","-5","-12","-16","16"],c:3,e:"x < 0 olduğundan y = 4·(-3) − 4 = -16."},
+{q:"Algoritma:\nIF (Sayı % 2 = 1) THEN Sonuç = (Sayı * 3) + 4\nELSE Sonuç = Sayı * 2\n\nSayı = 7 için Sonuç kaçtır?",o:["14","25","21","18","11"],c:1,e:"7 % 2 = 1 olduğundan Sonuç = 7·3 + 4 = 25."},
+{q:"VB'deki Select…Case yapısı diğer programlama dillerinde hangi adla bilinir?",o:["for…next","do…while","switch…case","if…then","while…end"],c:2,e:"Diğer dillerde bu yapı switch…case şeklinde ifade edilir."},
+{q:"Select Case yapısında test edilen değer hiçbir Case ile eşleşmezse hangi bölüm çalışır?",o:["Case Else","End Select","Case 0","Then","İlk Case"],c:0,e:"Hiçbir Case sağlanmadığında Case Else bölümü çalışır."},
+{q:"İç içe seçimli yapıda toplam 3 adet If deyimi kullanılmışsa kaç adet End If gerekir?",o:["1","2","3","4","Gerekmez"],c:2,e:"Kullanılan her If deyimi kadar End If olmalıdır."},
+{q:"Algoritma:\nIF (Ortalama > 60) AND (Katılım_yüzdesi > 0,8) THEN\n  YAZ (\"Sertifika almaya hak kazandınız!\")\nEND IF\n\nOrtalama = 70, Katılım_yüzdesi = 0,75 için çıktı nedir?",o:["Sertifika almaya hak kazandınız!","Hata mesajı","Sertifika alamadınız","Hiçbir şey yazdırılmaz","0,75"],c:3,e:"AND için iki koşul da doğru olmalı. 0,75 > 0,8 sağlanmadığından koşul yanlıştır ve tek seçimli yapıda hiçbir işlem yapılmaz."}
+];
+const L="abcde";
+let i=0, ans=Array(Q.length).fill(null);
+const $=id=>document.getElementById(id);
+
+function render(){
+  const q=Q[i];
+  $("count").textContent=`Soru ${i+1} / ${Q.length}`;
+  $("qtext").textContent=q.q;
+  $("bar").style.width=((i)/Q.length*100)+"%";
+  $("opts").innerHTML="";
+  q.o.forEach((t,k)=>{
+    const b=document.createElement("button");
+    b.className="opt"+(ans[i]===k?" sel":"");
+    const s=document.createElement("b"); s.textContent=L[k]+")";
+    const x=document.createElement("span"); x.textContent=t;
+    b.append(s,x);
+    b.onclick=()=>{ans[i]=k;render()};
+    $("opts").appendChild(b);
+  });
+  $("prev").disabled=i===0;
+  $("next").textContent=i===Q.length-1?"Bitir":"İleri";
+  $("next").disabled=ans[i]===null;
+}
+$("prev").onclick=()=>{if(i>0){i--;render()}};
+$("next").onclick=()=>{ if(i<Q.length-1){i++;render()} else finish(); };
+
+function finish(){
+  $("quiz").classList.add("hidden");
+  $("result").classList.remove("hidden");
+  $("bar").style.width="100%";
+  let n=0; const R=$("review"); R.innerHTML="";
+  Q.forEach((q,k)=>{
+    const ok=ans[k]===q.c; if(ok)n++;
+    const d=document.createElement("div");
+    d.className="rev "+(ok?"ok":"no");
+    const t=document.createElement("span"); t.className="tag"; t.textContent=`Soru ${k+1}: `+(ok?"Doğru":"Yanlış");
+    const p=document.createElement("p"); p.textContent=q.q;
+    const a=document.createElement("p"); a.textContent=`Senin cevabın: ${L[ans[k]]}) ${q.o[ans[k]]}`;
+    d.append(t,p,a);
+    if(!ok){const c=document.createElement("p"); c.textContent=`Doğru cevap: ${L[q.c]}) ${q.o[q.c]}`; d.append(c)}
+    const e=document.createElement("p"); e.className="exp"; e.textContent=q.e;
+    d.append(e); R.appendChild(d);
+  });
+  $("score").textContent=`${n} / ${Q.length}`;
+  $("summary").textContent=`Yüzde ${Math.round(n/Q.length*100)} başarı`;
+  window.scrollTo(0,0);
+}
+$("restart").onclick=()=>{ans=Array(Q.length).fill(null);i=0;$("result").classList.add("hidden");$("quiz").classList.remove("hidden");render()};
+render();
+</script>
+</body>
+</html>

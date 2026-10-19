@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Programlamaya Giriş – Ünite 2 Quiz</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1d2433;--muted:#5b6475;--line:#d9dde5;--accent:#2457c5;--sel:#e8effc;--ok:#1b7a43;--okbg:#e5f5ec;--bad:#b3261e;--badbg:#fbe9e7}
+@media (prefers-color-scheme:dark){:root{--bg:#14171d;--card:#1d222b;--text:#e8eaf0;--muted:#9aa3b5;--line:#343b49;--accent:#7aa2f7;--sel:#25304a;--ok:#6fcf97;--okbg:#17301f;--bad:#f28b82;--badbg:#3a1d1b}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 Georgia,"Times New Roman",serif;padding:24px 16px}
+main{max-width:680px;margin:0 auto}
+h1{font-size:1.5rem;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 20px;font-family:system-ui,sans-serif;font-size:.95rem}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-bottom:20px}
+.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .25s}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:22px}
+.q{font-size:1.1rem;white-space:pre-line;margin:0 0 16px}
+.opt{display:flex;gap:12px;width:100%;text-align:left;font:inherit;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px 14px;margin-bottom:10px;cursor:pointer}
+.opt:hover{border-color:var(--accent)}
+.opt:focus-visible,.btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.opt.sel{background:var(--sel);border-color:var(--accent)}
+.opt b{font-family:system-ui,sans-serif;min-width:1.4em;color:var(--accent)}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:18px;font-family:system-ui,sans-serif}
+.btn{font:inherit;font-family:system-ui,sans-serif;background:var(--accent);color:#fff;border:0;border-radius:8px;padding:10px 20px;cursor:pointer}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+.score{font-size:2.4rem;margin:0}
+.rev{border:1px solid var(--line);border-radius:10px;background:var(--card);padding:16px 18px;margin-top:14px}
+.rev.ok{border-left:5px solid var(--ok)}
+.rev.no{border-left:5px solid var(--bad)}
+.rev p{margin:.3rem 0;white-space:pre-line}
+.tag{font-family:system-ui,sans-serif;font-size:.85rem}
+.ok .tag{color:var(--ok)}.no .tag{color:var(--bad)}
+.exp{color:var(--muted);font-size:.95rem}
+.hidden{display:none}
+</style>
+</head>
+<body>
+<main>
+<h1>Programlamaya Giriş – Ünite 2</h1>
+<p class="sub">Algoritma ve Programlamaya Giriş · 10 soru · Sonuç en sonda gösterilir</p>
+<div class="bar" aria-hidden="true"><i id="bar"></i></div>
+
+<section id="quiz" class="card">
+  <p class="sub" id="count"></p>
+  <p class="q" id="qtext"></p>
+  <div id="opts"></div>
+  <div class="nav">
+    <button class="btn ghost" id="prev">Geri</button>
+    <button class="btn" id="next">İleri</button>
+  </div>
+</section>
+
+<section id="result" class="hidden">
+  <div class="card">
+    <p class="sub">Sonuç</p>
+    <p class="score" id="score"></p>
+    <p id="summary" class="sub"></p>
+    <button class="btn" id="restart">Yeniden başla</button>
+  </div>
+  <div id="review"></div>
+</section>
+</main>
+
+<script>
+// Sorular: c = doğru şıkkın indeksi (0=a, 1=b ...)
+const Q=[
+{q:"Aşağıdakilerden hangisi tam sayı veri tiplerinden değildir?",o:["byte","short","long","float","int"],c:3,e:"float ondalıklı (kayan noktalı) sayı tipidir; diğerleri tam sayı tipleridir."},
+{q:"Aşağıdakilerden hangisi karakter veri tipindedir?",o:["char","strng","byte","letter","stg"],c:0,e:"Karakter veri tipi char'dır."},
+{q:"Aşağıdakilerden hangisi aritmetik işlem değildir?",o:["toplama","çıkarma","kesişim kümesi oluşturma","mod alma","üs alma"],c:2,e:"Kesişim kümesi oluşturma bir küme işlemidir, aritmetik işlem değildir."},
+{q:"x = 5, y = 10, z = 15 iken sırasıyla şu işlemlerin sonuçları nedir?\n• x < y AND y < z\n• x < y OR y < z\n• NOT y < z",o:["True True True","False True False","True True False","False False True","False False False"],c:2,e:"İlk ikisi True; y < z True olduğundan NOT ile False olur."},
+{q:"x = 5, y = 10, z = 5 iken sırasıyla sonuçlar nedir?\n• x eşittir y\n• x eşit değildir y\n• x küçüktür y\n• x büyüktür y\n• x küçük veya eşittir z",o:["False True False False True","False True True False False","False True True False True","True False True False True","True False True True True"],c:2,e:"5=10 False, 5≠10 True, 5<10 True, 5>10 False, 5≤5 True."},
+{q:"Aşağıdakilerden hangisi algoritmalarda geçerli bir karakter veri tipi örneğidir?",o:["30.03.2022","123","'c'","3.14","True"],c:2,e:"Tek tırnak içindeki tek karakter ('c') karakter verisidir."},
+{q:"Aşağıdaki veri tiplerinden hangisi mantıksal değerleri tanımlamak için kullanılır?",o:["string","boolean","float","short","char"],c:1,e:"boolean, True/False değerlerini tutar."},
+{q:"Basit algoritma yapısında hiçbir koşul veya döngü olmadığı durumda işlemler birbirini nasıl takip eder?",o:["Ardışık olarak","Bazı adımları atlayarak","Bazı adımları tekrarlayarak","Sondan başa doğru","Hiçbiri"],c:0,e:"Koşul ve döngü yoksa adımlar sırayla (ardışık) işlenir."},
+{q:"AND mantıksal operatöründe sonucun doğru (TRUE) olması için hangi koşul sağlanmalıdır?",o:["Durumlardan sadece birinin doğru olması","Durumlardan en az birinin doğru olması","Her iki durumun doğru olması","Her iki durumun yanlış olması","Durumlardan en az birinin yanlış olması"],c:2,e:"AND, ancak her iki durum da doğruysa TRUE döndürür."},
+{q:"Bir algoritmada değer artışının ifade edilmesi için aşağıdakilerden hangisi kullanılmaz?",o:["c = c + 1","c = ++a","b = a++","a = a + 1","a+-1"],c:4,e:"a+-1 bir artış ifadesi değildir; diğerleri değeri 1 artırır."}
+];
+const L="abcde";
+let i=0, ans=Array(Q.length).fill(null);
+const $=id=>document.getElementById(id);
+
+function render(){
+  const q=Q[i];
+  $("count").textContent=`Soru ${i+1} / ${Q.length}`;
+  $("qtext").textContent=q.q;
+  $("bar").style.width=((i)/Q.length*100)+"%";
+  $("opts").innerHTML="";
+  q.o.forEach((t,k)=>{
+    const b=document.createElement("button");
+    b.className="opt"+(ans[i]===k?" sel":"");
+    const s=document.createElement("b"); s.textContent=L[k]+")";
+    const x=document.createElement("span"); x.textContent=t;
+    b.append(s,x);
+    b.onclick=()=>{ans[i]=k;render()};
+    $("opts").appendChild(b);
+  });
+  $("prev").disabled=i===0;
+  $("next").textContent=i===Q.length-1?"Bitir":"İleri";
+  $("next").disabled=ans[i]===null;
+}
+$("prev").onclick=()=>{if(i>0){i--;render()}};
+$("next").onclick=()=>{ if(i<Q.length-1){i++;render()} else finish(); };
+
+function finish(){
+  $("quiz").classList.add("hidden");
+  $("result").classList.remove("hidden");
+  $("bar").style.width="100%";
+  let n=0; const R=$("review"); R.innerHTML="";
+  Q.forEach((q,k)=>{
+    const ok=ans[k]===q.c; if(ok)n++;
+    const d=document.createElement("div");
+    d.className="rev "+(ok?"ok":"no");
+    const t=document.createElement("span"); t.className="tag"; t.textContent=`Soru ${k+1}: `+(ok?"Doğru":"Yanlış");
+    const p=document.createElement("p"); p.textContent=q.q;
+    const a=document.createElement("p"); a.textContent=`Senin cevabın: ${L[ans[k]]}) ${q.o[ans[k]]}`;
+    d.append(t,p,a);
+    if(!ok){const c=document.createElement("p"); c.textContent=`Doğru cevap: ${L[q.c]}) ${q.o[q.c]}`; d.append(c)}
+    const e=document.createElement("p"); e.className="exp"; e.textContent=q.e;
+    d.append(e); R.appendChild(d);
+  });
+  $("score").textContent=`${n} / ${Q.length}`;
+  $("summary").textContent=`Yüzde ${Math.round(n/Q.length*100)} başarı`;
+  window.scrollTo(0,0);
+}
+$("restart").onclick=()=>{ans=Array(Q.length).fill(null);i=0;$("result").classList.add("hidden");$("quiz").classList.remove("hidden");render()};
+render();
+</script>
+</body>
+</html>
