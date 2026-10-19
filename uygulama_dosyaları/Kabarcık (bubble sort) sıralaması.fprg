@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="Kabarc&#305;k (bubble sort) s&#305;ralamas&#305;"/>
+        <attribute name="authors" value="pc"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-06-24 05:17:28 &#214;S"/>
+        <attribute name="created" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTI0OzA0OjE1OjE4IMOWUzsyMzky"/>
+        <attribute name="edited" value="cGM7UENPR1JFVE1FTjsyMDI2LTA2LTI0OzA1OjE3OjI4IMOWUzsxOzI1MDQ="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="dizi" type="Integer" array="True" size="n"/>
+            <declare name="n" type="Integer" array="False" size=""/>
+            <assign variable="n" expression="3"/>
+            <declare name="i, j, gecici" type="Integer" array="False" size=""/>
+            <assign variable="gecici" expression="0"/>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <input variable="dizi[i]"/>
+            </for>
+            <for variable="i" start="0" end="n-2" direction="inc" step="1">
+                <for variable="j" start="0" end="n-i-2" direction="inc" step="1">
+                    <if expression="dizi[j]&gt;dizi[j+1]">
+                        <then>
+                            <assign variable="gecici" expression="dizi[j]"/>
+                            <assign variable="dizi[j]" expression="dizi[j + 1]"/>
+                            <assign variable="dizi[j + 1]" expression="gecici"/>
+                        </then>
+                        <else/>
+                    </if>
+                </for>
+            </for>
+            <for variable="i" start="0" end="2" direction="inc" step="1">
+                <output expression="dizi[i]" newline="True"/>
+            </for>
+        </body>
+    </function>
+</flowgorithm>
